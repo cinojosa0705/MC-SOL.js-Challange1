@@ -6,6 +6,8 @@ const {
     LAMPORTS_PER_SOL
 } = require("@solana/web3.js");
 
+const userPublicKey = process.argv.slice(2)[0]
+
 const airDropSol = async () => {
     try {
         // Connect to the Devnet and make a wallet from privateKey
@@ -14,7 +16,7 @@ const airDropSol = async () => {
         // Request airdrop of 2 SOL to the wallet
         console.log("Airdropping some SOL to your wallet!");
         const fromAirDropSignature = await connection.requestAirdrop(
-            new PublicKey(process.argv.slice(2)[0]),
+            new PublicKey(userPublicKey),
             //            ^^^^^^^^^^^^^^^^^^^^^^^^ Here we get the users public key from the CLI
             2 * LAMPORTS_PER_SOL
         );
